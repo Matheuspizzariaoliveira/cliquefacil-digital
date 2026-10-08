@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Users, TrendingUp, Clock } from "lucide-react";
 
@@ -7,6 +7,12 @@ export const Route = createFileRoute("/admin/")({
 });
 
 function AdminDashboard() {
+  const navigate = useNavigate();
+
+  const handleCreatePage = (type: string) => {
+    navigate({ to: '/admin/criar', search: { tipo: type } });
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -78,25 +84,25 @@ function AdminDashboard() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <button className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
+            <button onClick={() => handleCreatePage('salao')} className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
               <div className="text-4xl mb-3">💇</div>
               <h3 className="font-semibold text-gray-900 group-hover:text-[#22C55E]">Salão de Beleza</h3>
               <p className="text-sm text-gray-500 mt-1">Agendamentos e serviços</p>
             </button>
 
-            <button className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
+            <button onClick={() => handleCreatePage('pizzaria')} className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
               <div className="text-4xl mb-3">🍕</div>
               <h3 className="font-semibold text-gray-900 group-hover:text-[#22C55E]">Pizzaria</h3>
               <p className="text-sm text-gray-500 mt-1">Cardápio digital</p>
             </button>
 
-            <button className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
+            <button onClick={() => handleCreatePage('restaurante')} className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
               <div className="text-4xl mb-3">🍽️</div>
               <h3 className="font-semibold text-gray-900 group-hover:text-[#22C55E]">Restaurante</h3>
               <p className="text-sm text-gray-500 mt-1">Menu completo</p>
             </button>
 
-            <button className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
+            <button onClick={() => handleCreatePage('barbearia')} className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-[#22C55E] hover:bg-green-50 transition-all group">
               <div className="text-4xl mb-3">✂️</div>
               <h3 className="font-semibold text-gray-900 group-hover:text-[#22C55E]">Barbearia</h3>
               <p className="text-sm text-gray-500 mt-1">Cortes e agendamentos</p>
